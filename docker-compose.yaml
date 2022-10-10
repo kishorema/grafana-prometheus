@@ -1,7 +1,7 @@
 services:
   prometheus:
       image: prom/prometheus:v2.35.0
-      network_mode: host
+      #network_mode: host
       container_name: prometheus
       restart: unless-stopped
       volumes:
@@ -9,7 +9,7 @@ services:
       command:
         - "--config.file=/etc/prometheus/prometheus.yaml"
       ports:
-        - 9090:9090
+        - "9090:9090"
 #      links:
 #        - node-exporter:node-exporter
 
@@ -25,12 +25,12 @@ services:
   grafana:
     image: grafana/grafana-oss:8.5.2
     pull_policy: always
-    network_mode: host
+    #network_mode: host
     container_name: grafana
     restart: unless-stopped
     user: root
     ports:
-      - 3000:3000
+      - "3000:3000"
     links:
       - prometheus:prometheus
     volumes:
